@@ -1,0 +1,376 @@
+/* --- Global Styles & Fonts --- */
+:root {
+    --primary-color: #e74c3c;
+    --secondary-color: #34495e;
+    --light-color: #f4f4f4;
+    --dark-color: #333;
+    --white-color: #ffffff;
+    --font-family: 'Hind Siliguri', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* For smooth scrolling */
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--dark-color);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-padding {
+    padding: 60px 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--secondary-color);
+}
+
+.bg-light {
+    background-color: var(--light-color);
+}
+
+.text-center {
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.btn-primary:hover {
+    background-color: #c0392b;
+}
+
+.btn-large {
+    font-size: 1.1rem;
+    padding: 15px 30px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+/* --- 0. Sticky Header --- */
+.sticky-header {
+    background-color: var(--white-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    animation: slideDown 0.5s ease-out; /* Animation */
+}
+
+.sticky-header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu li {
+    margin-left: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 500;
+}
+
+/* --- 1. Hero Section --- */
+.hero-section {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.hero-image {
+    max-width: 500px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+}
+
+.hero-section h2 {
+    font-size: 1.8rem;
+    margin: 10px 0;
+}
+
+.hero-section .price {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.hero-section .discount {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.hero-section .trust-badge {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #27ae60;
+    margin: 15px 0;
+}
+
+.hero-section .btn {
+    margin-top: 20px;
+}
+
+/* --- 2. Product Details --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.product-item {
+    text-align: center;
+    background: var(--white-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.product-item img {
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* --- 3. Features --- */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.feature-box {
+    background: var(--white-color);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.feature-box h4 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.feature-box ul {
+    list-style: '✔ ';
+    padding-left: 20px;
+}
+
+/* --- 4. Logistics --- */
+.logistics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.trust-item {
+    text-align: center;
+    background: var(--light-color);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.trust-item h4 {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+/* --- 5. Support --- */
+.btn-support {
+    font-size: 1.1rem;
+    padding: 12px 25px;
+    margin: 10px;
+    color: var(--white-color);
+    display: inline-flex;
+    align-items: center;
+}
+.btn-support img {
+    width: 24px;
+    margin-right: 10px;
+    filter: invert(1);
+}
+.btn-support.whatsapp {
+    background-color: #25D366;
+}
+.btn-support.facebook {
+    background-color: #1877F2;
+}
+
+/* --- 6. Checkout Form --- */
+.checkout-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    background: var(--white-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: var(--font-family);
+}
+
+.order-summary {
+    background: var(--light-color);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.order-summary h3 {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-item.total {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.shipping-options {
+    margin: 20px 0;
+}
+
+.form-group-radio {
+    margin-bottom: 5px;
+}
+
+.form-group-radio input {
+    margin-right: 10px;
+}
+
+.payment-method {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* --- Footer --- */
+.footer {
+    background: var(--secondary-color);
+    color: var(--white-color);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+/* --- Animations --- */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* --- Responsive Styles (Mobile Friendly) --- */
+@media (max-width: 992px) {
+    .features-grid,
+    .logistics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        /* Mobile menu can be implemented here with JS */
+        display: none; 
+    }
+
+    .product-grid,
+    .checkout-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .features-grid,
+    .logistics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+}
