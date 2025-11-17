@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>চেকআউট ফর্ম</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="tel"] { width: 100%; padding: 8px; box-sizing: border-box; }
+        .shipping-option { margin-bottom: 10px; }
+        .total-section { margin-top: 20px; padding: 10px; border-top: 2px solid #ccc; font-size: 1.2em; }
+        button { padding: 10px 15px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2>চেকআউট ফর্ম</h2>
+
+    <form id="2738525186402810953" action="https://formspree.io/f/mkgklkga" method="POST">
+        
+        <div class="form-group">
+            <label for="name">নাম:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone">ফোন:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">ঠিকানা:</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+
+        <div class="form-group">
+            <label>ডেলিভারি অপশন:</label>
+            <div class="shipping-option">
+                <input type="radio" id="dhaka-shipping" name="shipping" value="80" required>
+                <label for="dhaka-shipping">ঢাকা শহরের ভেতরে - ৳ ৮0</label>
+            </div>
+            <div class="shipping-option">
+                <input type="radio" id="outside-dhaka-shipping" name="shipping" value="130">
+                <label for="outside-dhaka-shipping">ঢাকা শহরের বাইরে - ৳ ১৩0</label>
+            </div>
+            <input type="hidden" id="shipping-cost-final" name="shipping_cost" value="">
+            <input type="hidden" id="total-price-final" name="total_price" value="">
+            <input type="hidden" name="subtotal" value="650"> </div>
+
+        <div class="total-section">
+            <p>সাবটোটাল: ৳ 650.00</p>
+            <p>মোট মূল্য (শিপিং সহ): <span id="total-price">৳ 650.00</span></p>
+        </div>
+
+        <button type="submit">অর্ডার কনফার্ম করুন</button>
+    </form>
+
+    <script>
+        // Wait for the DOM to be fully loaded before running the script
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // --- Dynamic Price Calculation for Checkout ---
+            
+            // Get all the necessary elements
+            const shippingOptions = document.querySelectorAll('input[name="shipping"]');
+            const totalPriceElement = document.getElementById('total-price');
+            const shippingCostFinalInput = document.getElementById('shipping-cost-final');
+            const totalPriceFinalInput = document.getElementById('total-price-final');
+            
+            // Define the base product price (Subtotal)
+            const subtotal = 650;
+
+            // Function to update the total price
+            function updateTotalPrice() {
+                const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+                
+                let shippingCost = 0;
+                if (selectedShipping) {
+                    shippingCost = parseInt(selectedShipping.value);
+                } else {
+                    // যদি কোনো শিপিং অপশন সিলেক্ট করা না থাকে, তাহলে শুধুমাত্র সাবটোটাল দেখাবে
+                    totalPriceElement.innerText = `৳ ${subtotal}.00`;
+                    shippingCostFinalInput.value = ''; // Reset hidden field
+                    totalPriceFinalInput.value = subtotal;
+                    return;
+                }
+                
+                // Calculate the new total price
+                const newTotal = subtotal + shippingCost;
+                
+                // Update the total price on the page
+                totalPriceElement.innerText = `৳ ${newTotal}.00`;
+
+                // Update the hidden fields for Formspree
+                shippingCostFinalInput.value = shippingCost;
+                totalPriceFinalInput.value = newTotal;
+            }
+
+            // Initial call to set the default total price display (only subtotal)
+            updateTotalPrice();
+
+            // Add an event listener to each shipping radio button
+            shippingOptions.forEach(option => {
+                option.addEventListener('change', updateTotalPrice);
+            });
+
+            // --- Form Submission Handler (Demo + Formspree Integration) ---
+            const orderForm = document.getElementById('2738525186402810953');
+            
+            orderForm.addEventListener('submit', function(event) {
+                
+                // Check which shipping option is selected
+                const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+                
+                if (!selectedShipping) {
+                    // Prevent submission and show alert if no shipping option is selected
+                    event.preventDefault(); 
+                    alert('অনুগ্রহ করে একটি ডেলিভারি অপশন সিলেক্ট করুন।');
+                    return;
+                }
+
+                // If a shipping option is selected, the Formspree submission will proceed.
+                // You can add your demo alert before or after submission (or remove it).
+                
+                // ⚠️ NOTE: The 'action="https://formspree.io/f/mkgklkga"' in the <form> tag handles the submission.
+                // The JavaScript Form Submission Handler section from your original code is now redundant 
+                // for the actual Formspree submission, but I've kept the total calculation and 
+                // alert logic for demonstration/validation.
+                
+                const shippingCost = parseInt(selectedShipping.value);
+                const total = subtotal + shippingCost;
+                
+                // Show a confirmation alert (This is a demo, it will execute before Formspree handles the POST request)
+                alert(
+                    `অর্ডারটি কনফার্ম করা হচ্ছে...\n` +
+                    `মোট মূল্য: ৳ ${total}\n` +
+                    `এই ফর্মটি Formspree-এর মাধ্যমে জমা হবে।`
+                );
+
+                // Optionally, you can prevent the default submission and use fetch/XHR
+                // for a single-page app experience, but for Formspree, letting the default
+                // action occur is the standard method unless you handle the response manually.
+                
+                // **Important:** We rely on the form's native submission to Formspree,
+                // so we don't call event.preventDefault() here, *unless* the shipping 
+                // option is missing (handled above).
+            });
+
+        });
+    </script>
+
+</body>
+</html>
