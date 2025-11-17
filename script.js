@@ -1,4 +1,4 @@
-// Wait for the DOM to be fully loaded before running the script
+    // Wait for the DOM to be fully loaded before running the script
 document.addEventListener("DOMContentLoaded", function() {
 
     // --- Dynamic Price Calculation for Checkout ---
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // --- Form Submission Handler (Demo) ---
-    const orderForm = document.getElementById('order-form');
+    const orderForm = document.getElementById("https://formspree.io/f/mkgklkga");
     
     orderForm.addEventListener('submit', function(event) {
         // Prevent the form from actually submitting (which would reload the page)
